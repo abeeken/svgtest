@@ -3,6 +3,10 @@ var sass = require('gulp-sass');
 var cssnano = require('gulp-cssnano');
 var rename = require('gulp-rename');
 var pug = require('gulp-pug');
+var concat = require('gulp-concat');
+var jsnano = require('gulp-minify');
+
+var jsfiles = 'js/**/*';
 
 gulp.task('sass', function(){
     return gulp.src('sass/style.scss')
@@ -25,7 +29,16 @@ gulp.task('views', function(){
         .pipe(gulp.dest('./public'))
 });
 
+gulp.task('minijs', function(){
+    return gulp.src(jsfiles)
+        .pipe(concat('scripts.js'))
+        .pipe(gulp.dest('./public/js'))
+        .pipe(jsnano())
+        .pipe(gulp.dest('./public/js'))
+});
+
 gulp.task('watch', function(){
     gulp.watch('sass/*.scss', gulp.series('sass','minicss'));
-    gulp.watch('views/*.pug', gulp.series('views'));
+    gulp.watch('views/**/*.pug', gulp.series('views'));
+    gulp.watch('js/*.js', gulp.series('minijs'));
  });
