@@ -7,7 +7,7 @@ var pug = require('gulp-pug');
 gulp.task('sass', function(){
     return gulp.src('sass/style.scss')
         .pipe(sass())
-        .pipe(gulp.dest('public/css'))
+        .pipe(gulp.dest('./public/css'))
 });
 
 gulp.task('minicss', function(){
@@ -16,13 +16,13 @@ gulp.task('minicss', function(){
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(gulp.dest('public/css'))
+        .pipe(gulp.dest('./public/css'))
 });
 
 gulp.task('views', function(){
     return gulp.src('views/*.pug')
         .pipe(pug())
-        .pipe(gulp.dest('public'))
+        .pipe(gulp.dest('./public'))
 });
 
 gulp.task('watch', function(){
