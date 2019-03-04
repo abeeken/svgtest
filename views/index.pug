@@ -1,0 +1,10 @@
+extends layout/layout.pug
+
+block content
+    div.row
+        div.col
+            h1
+                | SVG Test
+            p
+                | Testing for SVG files created in Illustrator
+            object#test-svg(data="/img/test.svg" type="image/svg+xml")
